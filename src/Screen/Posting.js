@@ -17,7 +17,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AuthContext} from '../../store/context/Auth-Contex';
 import colors from '../config/colors';
-// import {URL} from './url';
+import {LINK} from '../../util/http';
 
 function Posting({navigation}) {
   const [image, SetImage] = useState();
@@ -28,10 +28,9 @@ function Posting({navigation}) {
   // const event = new Date();
 
   const [inputs, setInputData] = useState({
-    discription: '',
+    description: '',
     name: '',
-    type: '',
-
+    address: '',
     price: '',
   });
 
@@ -40,43 +39,37 @@ function Posting({navigation}) {
 
   async function Post() {
     setLoading(true);
-    // const formData = new FormData();
-    // formData.append('pet', {
-    //   name: `pic ${new Date()} `,
-    //   uri: image.path,
-    //   type: image.mime,
-    // });
+    const formData = new FormData();
+    formData.append('image', {
+      name: `pic ${new Date()} `,
+      uri: image.path,
+      type: image.mime,
+    });
 
-    // formData.append('name', inputs.name);
-    // formData.append('discription', inputs.discription);
-    // formData.append('breed', inputs.type);
-    // formData.append('price', inputs.price);
-    // formData.append('token', token)
+    formData.append('name', inputs.name);
+    formData.append('description', inputs.description);
+    formData.append('address', inputs.address);
+    formData.append('category', 'New Car');
+    formData.append('price', inputs.price);
+    formData.append('token', token);
     const date = new Date().getTime();
     console.log(date);
-    // const SendData = {
-    //   name: inputs.name,
-    //   // images: :inputs.productImageUrl,
-    //   description: inputs.discription,
-    //   category: 'Car',
-    //   expiresOn: date,
-    // };
 
-    // console.log(formData);
-    // const res = await fetch(URL , {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    //   body: formData,
-    // });
-    // console.log(res);
-    // const newRes = await res?.json();
-    // console.log(newRes);
-
-    // Alert.alert('Post Successfully', ` 🎉 ${newRes?.message}... 🎉`);
-    // setInputData();
+    console.log(formData);
+    const res = await fetch(LINK, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        authorization: token,
+      },
+      body: formData,
+    });
+    console.log(res);
+    const newRes = await res?.json();
+    console.log(newRes);
+    Alert.alert('Post Successfully', ` 🎉 ${newRes?.message}... 🎉`);
+    setInputData();
     setLoading(false);
   }
 
@@ -200,15 +193,15 @@ function Posting({navigation}) {
             placeholder="Name"
             placeholderTextColor={'grey'}
             style={styles.input}
-            value={inputs.name}
+            value={inputs?.name}
             onChangeText={value => ChangeValue(value, 'name')}
           />
           <TextInput
-            placeholder="type"
+            placeholder="address"
             placeholderTextColor={'grey'}
             style={styles.input}
-            value={inputs.type}
-            onChangeText={value => ChangeValue(value, 'type')}
+            value={inputs?.address}
+            onChangeText={value => ChangeValue(value, 'address')}
           />
 
           <TextInput
@@ -216,17 +209,17 @@ function Posting({navigation}) {
             placeholderTextColor={'grey'}
             style={styles.input}
             keyboardType="numeric"
-            value={inputs.price}
+            value={inputs?.price}
             onChangeText={value => ChangeValue(value, 'price')}
           />
 
           <TextInput
-            placeholder="discription"
+            placeholder="description"
             placeholderTextColor={'grey'}
             multiline={true}
             style={[styles.input, {width: '90%'}]}
-            value={inputs.discription}
-            onChangeText={value => ChangeValue(value, 'discription')}
+            value={inputs?.description}
+            onChangeText={value => ChangeValue(value, 'description')}
           />
           <TouchableOpacity
             onPress={validate}

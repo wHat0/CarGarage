@@ -11,7 +11,6 @@ function FavContextProvider({children}) {
   const [favId, setFavId] = useState([]);
 
   async function addFaviourite(id) {
-    console.log(id, 'CONTX ID');
     setFavId(currentFavId => [...currentFavId, id]);
     // AsyncStorage.setItem('Fav', JSON.stringify(favId));
   }

@@ -1,5 +1,6 @@
 export default {
-  primary: '#b047db',
+  primary: '#A946E5',
+  buttons: '#A946E5',
   secondary: '#787878',
   background: '#d0d8dc',
   text: '#787878',

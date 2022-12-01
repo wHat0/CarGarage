@@ -1,11 +1,7 @@
 import {Alert} from 'react-native';
 import axios from 'axios';
 
-const LINK = `http://192.168.12.252:5000/api/products`;
-
-// get	/api/products				get products
-// post	/api/products				create product
-// /api/products/:id
+export const LINK = `http://192.168.171.253:5000/api/products`;
 
 export async function showPost() {
   const response = await axios

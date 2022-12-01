@@ -9,7 +9,6 @@ import {AuthContext} from '../../store/context/Auth-Contex';
 
 const ProfileScreen = ({navigation}) => {
   const ContxAuth = useContext(AuthContext);
-  // console.log(ContxAuth.token);
   const name = ContxAuth.User.name;
   const avatar =
     'https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png';
@@ -35,7 +34,6 @@ const ProfileScreen = ({navigation}) => {
                 ]}>
                 {name}{' '}
               </Title>
-              {/* <Caption style={styles.caption}>@j_doe</Caption> */}
             </View>
           </View>
         </View>
@@ -68,15 +66,6 @@ const ProfileScreen = ({navigation}) => {
             </View>
           </TouchableRipple>
 
-          {/* <TouchableRipple
-            onPress={() => {
-              console.log('share preesed');
-            }}>
-            <View style={styles.menuItem}>
-              <Icon name="share-outline" color="#FF6347" size={25} />
-              <Text style={styles.menuItemText}>Tell Your Friends</Text>
-            </View>
-          </TouchableRipple> */}
           <TouchableRipple onPress={() => {}}>
             <View style={styles.menuItem}>
               <Icon name="account-check-outline" color="#FF6347" size={25} />

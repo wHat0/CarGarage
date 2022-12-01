@@ -5,10 +5,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  StatusBar,
   Platform,
-  TouchableOpacity,
-  Alert,
 } from 'react-native';
 
 import {ScrollView} from 'react-native-gesture-handler';

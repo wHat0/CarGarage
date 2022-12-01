@@ -13,7 +13,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {AuthContext} from '../../../store/context/Auth-Contex';
-import {LoginUser, SignUpUser} from '../../../util/user';
+import {LoginUser} from '../../../util/user';
 import AButton from '../../components/AButton';
 import Input from '../../components/Input';
 import colors from '../../config/colors';
@@ -79,7 +79,7 @@ export default function LoginScreen({navigation}) {
     await AsyncStorage.setItem('token', data?.token);
     await AsyncStorage.setItem('email', JSON.stringify(data));
     ContxAuth.authenticate(data.token, data.email, data);
-    Alert.alert('SignUp Successfully', ' 🎉 You can Login Now... 🎉');
+    Alert.alert(' Successfully', ' 🎉 You are Login Now... 🎉');
   }
   return (
     <View

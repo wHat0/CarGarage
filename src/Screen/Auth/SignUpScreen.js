@@ -82,10 +82,10 @@ export default function SignUpScreen({navigation}) {
     setLoading(true);
     try {
       const token = await SignUpUser(inputs);
-
+      Alert.alert('SignUp successfully');
       console.log(token);
     } catch (e) {
-      console.log(e.response.data);
+      console.log(e?.response?.data);
       setLoading(false);
       // Alert.alert('ALERT', 'User Already Registered');
       return;

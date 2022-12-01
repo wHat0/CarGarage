@@ -1,3 +1,4 @@
+import {useIsFocused} from '@react-navigation/native';
 import React, {useContext, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
@@ -7,29 +8,23 @@ import {showPost} from '../../util/http';
 import FavDetails from '../components/FavDetails';
 
 function Favourite({navigation}) {
-  // useContext
+  const isfocused = useIsFocused();
   const fav = useContext(FavContext).ids;
   console.log(fav);
 
   const [Data, setfav] = useState();
   const [favMealDetails, setItem] = useState();
-  // Data.filter(pid => fav.includes(pid._id));
-
-  //showing Data of ARRAY we have to FLATLIST the DAta
-  // console.info(JSON.stringify(favMealDetails));
 
   useEffect(() => {
     async function GetData() {
       const APIDATA = await showPost();
-
       setItem(prev => (prev = APIDATA.filter(pid => fav.includes(pid._id))));
     }
     GetData();
-  }, []);
+  }, [isfocused]);
 
   function renderItem(itemData) {
     const item = itemData.item;
-    console.log(item);
     const ProductProp = {
       itemtittle: item.name,
       affordability: item.Cost.price,

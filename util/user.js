@@ -1,8 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-// const API_KEY = 'AIzaSyCCzi7V-DQcE7m69M23dv1ci3Ci4VMWhww';
-const url = `http://192.168.12.252:5000/api/users`;
+const url = `http://192.168.171.253:5000/api/users`;
 
 export async function LoginUser(email, password) {
   //RestAPI for Login And SignUp User
@@ -18,8 +17,6 @@ export async function LoginUser(email, password) {
     })
     .catch(e => console.log('error', e));
 
-  // console.log(response);
-  // const token = response.data.idToken;
   return response;
 }
 

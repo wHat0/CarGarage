@@ -165,15 +165,3 @@ const DrawerNav = () => {
   );
 };
 export default DrawerNav;
-// useLayoutEffect(() => {
-//   navigation.setOptions({
-//     headerRight: () => (
-//       <Ionicons
-//         name="md-save-outline"
-//         size={24}
-//         color="black"
-//         onPress={Done}
-//       />
-//     ),
-//   });
-// }, [navigation, Done]);

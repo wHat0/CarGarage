@@ -2,19 +2,20 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
 import ProductBox from '../components/ProductCard';
 import {showPost} from '../../util/http';
+import {useIsFocused} from '@react-navigation/native';
 
 export default function Home({navigation}) {
   const [Data, SetData] = useState();
+  const isfocused = useIsFocused();
   useEffect(() => {
     async function GetData() {
       const APIDATA = await showPost();
       SetData(prev => (prev = APIDATA));
     }
     GetData();
-  }, []);
+  }, [isfocused]);
 
   function ProductRender({item}) {
-    // console.log(item);
     const Price = item?.Cost.price;
     const neg = item?.Cost.negotiable;
     const image = item?.images;
@@ -38,9 +39,6 @@ export default function Home({navigation}) {
     <View
       style={{
         backgroundColor: 'white',
-        // paddingTop: '10%',
-        // justifyContent: 'center',
-        // alignItems: 'center',
       }}>
       <View
         style={{
